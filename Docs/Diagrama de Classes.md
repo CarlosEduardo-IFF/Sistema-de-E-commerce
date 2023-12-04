@@ -1,7 +1,7 @@
 # Diagrama de Classes
 
 # v0.1
-<img src="/Docs/Imgs/Diagrama_de_Classes-v0.1.jpg">
+![d1](URL_da_Imagem)
 
 # v0.2
-<img src="/Docs/Imgs/Diagrama_de_Classes-v0.2.jpg">
+![d2](URL_da_Imagem)
