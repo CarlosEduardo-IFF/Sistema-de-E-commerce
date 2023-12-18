@@ -1,4 +1,4 @@
-package model;
+package br.edu.iff.Ecommerce.model;
 
 import java.io.Serializable;
 
@@ -6,9 +6,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.OneToOne;
+
 
 @MappedSuperclass
 public abstract class Conta implements Serializable{
@@ -28,18 +28,18 @@ public abstract class Conta implements Serializable{
 
     @Column(name = "col_senha", nullable = false)
     private String senha;
-
-    @OneToOne
-    @JoinColumn(name = "fk_usuario")
+    
+    @Column(name = "col_usuario", nullable = false)
     private Usuario usuario;
 
     public Conta(String email, String senha, Usuario usuario) {
-        this.email = email;
-        this.senha = senha;
-        this.usuario = usuario;
-    }
+		super();
+		this.email = email;
+		this.senha = senha;
+		this.usuario = usuario;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -63,11 +63,14 @@ public abstract class Conta implements Serializable{
         this.senha = senha;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+    
+
+    
 }

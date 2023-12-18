@@ -1,4 +1,4 @@
-package model;
+package br.edu.iff.Ecommerce.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -36,6 +36,7 @@ public class CarrinhoDeCompra implements Serializable {
             joinColumns = @JoinColumn(name = "fk_carrinho"),
             inverseJoinColumns = @JoinColumn(name = "fk_produto")
     )
+    
     private List<Produto> listaDeProdutos;
 
     public CarrinhoDeCompra() {

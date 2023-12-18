@@ -1,10 +1,10 @@
-package model;
+package br.edu.iff.Ecommerce.model;
 
-import java.util.List;
+import java.util.Collection;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 
 @Entity
 public class ContaCliente extends Conta {
@@ -22,16 +22,28 @@ public class ContaCliente extends Conta {
 
     @Column(name = "col_cpf", nullable = false, length = 14)
     private String cpf;
-    
-    @JoinColumn(name="id_cliente")
-    private List<Pedido> pedidos;
 
-    public ContaCliente(String email, String senha, Usuario usuario, double creditosCliente, int quantCompras,
-			String cpf) {
+    @ElementCollection
+    private Collection<Pedido> pedidos;
+    
+
+
+
+	public ContaCliente(String email, String senha, Usuario usuario, double creditosCliente, int quantCompras,
+			String cpf, Collection<Pedido> pedidos) {
 		super(email, senha, usuario);
 		this.creditosCliente = creditosCliente;
 		this.quantCompras = quantCompras;
 		this.cpf = cpf;
+		this.pedidos = pedidos;
+	}
+
+	public Collection<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Collection<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	public double getCreditosCliente() {
