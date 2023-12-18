@@ -1,4 +1,4 @@
-package model;
+package br.edu.iff.Ecommerce.model;
 
 import java.util.List;
 
@@ -29,13 +29,14 @@ public class ContaVendedor extends Conta {
     @OneToMany(mappedBy = "contaVendedor")
     private List<Produto> produtos;
 
-    public ContaVendedor(String email, String senha, Usuario usuario, int quantVendas, int ptsAvaliacao,
-			String descricao, String cnpj) {
+	public ContaVendedor(String email, String senha, Usuario usuario, int quantVendas, int ptsAvaliacao,
+			String descricao, String cnpj, List<Produto> produtos) {
 		super(email, senha, usuario);
 		this.quantVendas = quantVendas;
 		this.ptsAvaliacao = ptsAvaliacao;
 		this.descricao = descricao;
 		this.cnpj = cnpj;
+		this.produtos = produtos;
 	}
 
 	public int getQuantVendas() {

@@ -1,4 +1,4 @@
-package model;
+package br.edu.iff.Ecommerce.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

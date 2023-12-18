@@ -1,15 +1,16 @@
-package model;
+package br.edu.iff.Ecommerce.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+
 
 @Entity
 public class Usuario implements Serializable {
@@ -26,12 +27,10 @@ public class Usuario implements Serializable {
     @Column(length = 60) 
     private String nome;
 
-    @JoinColumn(name="id_usuario")
-    private List<Endereco> enderecos;
-    
-    @OneToOne(mappedBy="usuario")
-    private Conta conta;
 
+    @ElementCollection
+    private Collection<Endereco> enderecos;
+ 
     public Usuario(Long id, String nome, List<Endereco> enderecos) {
 		super();
 		this.id = id;
@@ -55,11 +54,5 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
 
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
 }
