@@ -9,3 +9,4 @@
 # v0.3
 ![Diagrama_de_Classe-v0 3](https://github.com/CarlosEduardo-IFF/Sistema-de-E-commerce/assets/149334691/d78c940a-6435-4183-a2f9-de4c48418010)
 
+
