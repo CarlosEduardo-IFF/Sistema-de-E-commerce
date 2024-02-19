@@ -12,16 +12,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotBlank;
+
 @Entity
 @Table(name = "tb_categoria")
 public class Categoria {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "col_id_categoria")
     private Long idCategoria;
 
-	@Column(name = "col_descricao", nullable = false, length = 125)
+    @NotBlank
+    @Column(name = "col_descricao", nullable = false, length = 125)
     private String descricao;
 
     @ManyToMany(mappedBy = "categorias")
