@@ -8,19 +8,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "tb_contaVendedor")
 public class ContaVendedor extends Conta {
 
-	@Column(name = "col_quant_vendas", nullable = false)
+    @Column(name = "col_quant_vendas", nullable = false)
     private int quantVendas;
 
     @Column(name = "col_pts_avaliacao", nullable = false)
     private int ptsAvaliacao;
 
+    @NotBlank
+    @Size(max = 255)
     @Column(name = "col_descricao", nullable = false, length = 255)
     private String descricao;
 
+    @NotBlank
+    @Pattern(regexp = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}-\\d{2}")
     @Column(name = "col_cnpj", nullable = false, length = 18)
     private String cnpj;
     
