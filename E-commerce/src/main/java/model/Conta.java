@@ -6,20 +6,29 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
-@MappedSuperclass
-public abstract class Conta{
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-	@Id
+@MappedSuperclass
+public abstract class Conta {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "col_id_conta")
     private Long id;
-	
-	@Column(name = "col_nome", length = 60) 
+
+    @NotBlank
+    @Size(max = 60)
+    @Column(name = "col_nome", length = 60) 
     private String nomeUsuario;
-	
+
+    @NotBlank
+    @Email
     @Column(name = "col_email", nullable = false, length = 255)
     private String email;
 
+    @NotBlank
     @Column(name = "col_senha", nullable = false)
     private String senha;
 
