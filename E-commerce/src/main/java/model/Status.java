@@ -7,27 +7,27 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotBlank;
+
 @Entity
 @Table(name = "tb_status")
-public class Status{
-	
-	@Id
+public class Status {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "col_id_status")
+    @Column(name = "col_id_status")
     private Long id;
 
-	@Column(name = "col_descricao", length = 125, nullable = false)
+    @NotBlank
+    @Column(name = "col_descricao", length = 125, nullable = false)
     private String descricao;
-	
-	public Status() {
-		
-	}
 
-    public Status(Long id, String descricao) {
-		super();
-		this.id = id;
-		this.descricao = descricao;
-	}
+    public Status() {
+    }
+
+    public Status(String descricao) {
+        this.descricao = descricao;
+    }
 
 	public Long getId() {
         return id;
