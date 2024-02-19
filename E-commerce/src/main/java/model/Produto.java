@@ -14,34 +14,48 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+import java.util.Collection;
+
 @Entity
 @Table(name = "tb_produto")
 public class Produto{
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "col_id_produto")
     private Long idProduto;
 
+    @NotBlank
+    @Size(max = 125)
     @Column(name = "col_nome", length = 125, nullable = false)
     private String nome;
 
+    @NotBlank
+    @Size(max = 225)
     @Column(name = "col_descricao", length = 225, nullable = false)
     private String descricao;
 
+    @Positive
     @Column(name = "col_preco", nullable = false)
     private double preco;
 
+    @Positive
     @Column(name = "col_quant_disponivel", nullable = false)
     private int quantDisponivel;
 
     @Column(name = "col_avaliacao")
     private int avaliacao;
-    
+
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "col_id_conta_vendedor", nullable = false)
     private ContaVendedor contaVendedor;
 
+    @NotNull
     @ManyToMany
     @JoinTable(
             name = "produto_categoria",
@@ -57,7 +71,7 @@ public class Produto{
         this.preco = preco;
         this.quantDisponivel = quantDisponivel;
         this.avaliacao = avaliacao;
-        this.categorias = (Collection<Categoria>) categorias;
+        this.categorias = categorias;
     }
 
     public Long getIdProduto() {
