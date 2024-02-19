@@ -10,21 +10,28 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 @Entity
 @Table(name = "tb_endereco")
-public class Endereco{
+public class Endereco {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "col_id_endereco")
+    @Column(name = "col_id_endereco")
     private Long id;
 
+    @NotBlank
     @Column(name = "col_rua", length = 255) 
     private String rua;
 
+    @NotBlank
     @Column(name = "col_numero", length = 10)
     private String numero;
 
+    @NotBlank
+    @Pattern(regexp = "\\d{8}")
     @Column(name = "col_cep", length = 8)
     private String cep;
 
@@ -36,7 +43,7 @@ public class Endereco{
 
     @Column(name = "col_estado", length = 255)
     private String estado;
- 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "col_id_conta_cliente")
     private ContaCliente contaCliente;
