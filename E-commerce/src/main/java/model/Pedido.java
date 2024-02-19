@@ -16,35 +16,47 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+
 @Entity
 @Table(name = "tb_pedido")
 public class Pedido {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "col_id_pedido")
     private long idPedido;
 
+    @Positive
     @Column(name = "col_valor_total", nullable = false)
     private double valorTotal;
 
+    @NotNull
     @Column(name = "col_data_hora", nullable = false)
     private LocalDateTime dataHora;
 
+    @Positive
     @Column(name = "col_quant_produtos", nullable = false)
     private int quantProdutos;
-    
+
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "col_fk_cliente", nullable = false)
     private ContaCliente cliente;
-    
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ElementCollection
-    private Collection<ItemPedido> itens = new ArrayList<>();
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "col_fk_status", nullable = false)
     private Status status;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ElementCollection
+    private Collection<ItemPedido> itens = new ArrayList<>();
 
     public Pedido(double valorTotal, LocalDateTime dataHora, int quantProdutos, Status status) {
         this.valorTotal = valorTotal;
@@ -52,9 +64,8 @@ public class Pedido {
         this.quantProdutos = quantProdutos;
         this.status = status;
     }
-    
+
     public Pedido() {
-    	
     }
     public long getIdPedido() {
         return idPedido;
