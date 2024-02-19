@@ -12,16 +12,27 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "tb_contaCliente")
 public class ContaCliente extends Conta {
 
-	@Column(name = "col_creditos_cliente", nullable = false)
+    @NotNull
+    @Positive
+    @Column(name = "col_creditos_cliente", nullable = false)
     private double creditosCliente;
 
+    @NotNull
     @Column(name = "col_quant_compras", nullable = false)
     private int quantCompras;
 
+    @NotBlank
+    @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")
     @Column(name = "col_cpf", nullable = false, length = 14)
     private String cpf;
     
