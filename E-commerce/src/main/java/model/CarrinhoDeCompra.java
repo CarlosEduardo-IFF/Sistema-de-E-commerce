@@ -13,14 +13,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 @Entity
 @Table(name = "tb_carrinhoDeCompra")
 public class CarrinhoDeCompra {
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "col_id_carrinho")
     private Long idCarrinho;
 
+    @NotNull
+    @Positive
     @Column(name = "col_quant_produtos", nullable = false)
     private int quantProdutos;
 
