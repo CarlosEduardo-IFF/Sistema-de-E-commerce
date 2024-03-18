@@ -1,0 +1,35 @@
+.jumbotron {
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            height: 400px; /* Ajuste conforme necessário */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .jumbotron h1 {
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        /* Estilos para o carrossel */
+        .carousel-item img {
+            width: 100%;
+            height: 400px; /* Ajuste conforme necessário */
+            object-fit: cover;
+        }
+
+        .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Alinhar os cards ao centro horizontalmente */
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 20px;
+        width: 200px; /* Largura fixa para os cards */
+    }
