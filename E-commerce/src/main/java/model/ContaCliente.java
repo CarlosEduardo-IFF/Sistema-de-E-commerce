@@ -1,7 +1,10 @@
 package br.edu.iff.ecommerce.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -11,34 +14,31 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "tb_contaCliente")
 public class ContaCliente extends Conta {
 
-    @NotNull
-    @Positive
-    @Column(name = "col_creditos_cliente", nullable = false)
+	@Positive
+	@Column(name = "col_creditos_cliente", nullable = false)
     private double creditosCliente;
 
-    @NotNull
     @Column(name = "col_quant_compras", nullable = false)
     private int quantCompras;
 
     @NotBlank
-    @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")
     @Column(name = "col_cpf", nullable = false, length = 14)
     private String cpf;
     
     @OneToOne
     @JoinColumn(name = "Col_fk_carrinho", nullable = false)
     private CarrinhoDeCompra carrinho;
+    
+    @Column(name = "col_dataNasc", nullable = false)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate data;
 
     @ElementCollection
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -51,12 +51,14 @@ public class ContaCliente extends Conta {
 	public ContaCliente() {
 	}
 
-	public ContaCliente(String email, String senha, String nomeUsuario, String cpf, CarrinhoDeCompra carrinho) {
+	public ContaCliente(String email, String senha, String nomeUsuario, String cpf, CarrinhoDeCompra carrinho, LocalDate data) {
 		super(email, senha, nomeUsuario);
 		this.quantCompras = 0;
 		this.cpf = cpf;
 		this.carrinho = carrinho;
 		this.pedidos = new ArrayList<>();
+		this.data = data;
+		this.enderecos = new ArrayList<>();
 	}
 
 	public Collection<Pedido> getPedidos() {
@@ -98,5 +100,27 @@ public class ContaCliente extends Conta {
 	public void setCarrinho(CarrinhoDeCompra carrinho) {
 		this.carrinho = carrinho;
 	}
+	
+	public void addEndereco (Endereco endereco) {
+		this.enderecos.add(endereco);
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	public Collection<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(Collection<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+	
+	
 
 }

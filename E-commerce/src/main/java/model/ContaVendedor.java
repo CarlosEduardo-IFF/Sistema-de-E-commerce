@@ -7,6 +7,8 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_contaVendedor")
@@ -18,9 +20,12 @@ public class ContaVendedor extends Conta {
     @Column(name = "col_pts_avaliacao", nullable = false)
     private int ptsAvaliacao;
 
+    @NotBlank
+    @Size(max = 255)
     @Column(name = "col_descricao", nullable = false, length = 255)
     private String descricao;
 
+    @NotBlank
     @Column(name = "col_cnpj", nullable = false, length = 18)
     private String cnpj;
     
@@ -81,5 +86,9 @@ public class ContaVendedor extends Conta {
 		this.produtos = produtos;
 	}
     
-    
+	/*
+	public Long getIdVendedor() {
+		return this.getId();
+	}
+    */
 }

@@ -12,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "tb_carrinhoDeCompra")
@@ -21,6 +23,8 @@ public class CarrinhoDeCompra {
     @Column(name = "col_id_carrinho")
     private Long idCarrinho;
 
+	@NotNull
+    @Positive
     @Column(name = "col_quant_produtos", nullable = false)
     private int quantProdutos;
 
