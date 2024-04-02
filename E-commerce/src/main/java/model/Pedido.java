@@ -15,6 +15,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -25,12 +27,15 @@ public class Pedido {
     @Column(name = "col_id_pedido")
     private long idPedido;
 
+	  @Positive
     @Column(name = "col_valor_total", nullable = false)
     private double valorTotal;
 
+	  @NotNull
     @Column(name = "col_data_hora", nullable = false)
     private LocalDateTime dataHora;
 
+    @Positive
     @Column(name = "col_quant_produtos", nullable = false)
     private int quantProdutos;
     
