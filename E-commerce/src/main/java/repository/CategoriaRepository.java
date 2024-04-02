@@ -9,10 +9,10 @@ import br.edu.iff.ecommerce.model.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
-    @Query(value = "SELECT * FROM Categoria WHERE descricao = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM tb_categoria WHERE col_descricao = ?1", nativeQuery = true)
     Categoria buscarPelaDescricao(String descricao);
 
-    @Query(value = "SELECT * FROM Categoria WHERE idCategoria = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM tb_categoria WHERE col_id_categoria = ?1", nativeQuery = true)
     Categoria buscarPeloId(Long id);
 
 }
