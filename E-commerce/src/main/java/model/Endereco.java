@@ -1,5 +1,6 @@
 package br.edu.iff.ecommerce.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_endereco")
@@ -19,25 +21,31 @@ public class Endereco{
 	@Column(name = "col_id_endereco")
     private Long id;
 
+	@NotBlank
     @Column(name = "col_rua", length = 255) 
     private String rua;
 
+	@NotBlank
     @Column(name = "col_numero", length = 10)
     private String numero;
 
+	@NotBlank
     @Column(name = "col_cep", length = 8)
     private String cep;
 
+	@NotBlank
     @Column(name = "col_bairro", length = 255)
     private String bairro;
 
+	@NotBlank
     @Column(name = "col_cidade", length = 255)
     private String cidade;
 
+	@NotBlank
     @Column(name = "col_estado", length = 255)
     private String estado;
  
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "col_id_conta_cliente")
     private ContaCliente contaCliente;
     
@@ -48,6 +56,10 @@ public class Endereco{
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
+    }
+    
+    public Endereco() {
+    	
     }
 
     public Long getId() {
@@ -114,4 +126,13 @@ public class Endereco{
         this.estado = estado;
     }
 
+	public ContaCliente getContaCliente() {
+		return contaCliente;
+	}
+
+	public void setContaCliente(ContaCliente contaCliente) {
+		this.contaCliente = contaCliente;
+	}
+
+    
 }
