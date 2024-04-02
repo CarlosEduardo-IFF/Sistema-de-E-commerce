@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @MappedSuperclass
 public abstract class Conta{
@@ -14,12 +17,17 @@ public abstract class Conta{
     @Column(name = "col_id_conta")
     private Long id;
 	
-	@Column(name = "col_nome", length = 60) 
-    private String nomeUsuario;
-	
+	@NotBlank
+	@Size(max = 60)
+	@Column(name = "col_nome", length = 60)
+	private String nomeUsuario;
+
+	@NotBlank
+	@Email
     @Column(name = "col_email", nullable = false, length = 255)
     private String email;
 
+	  @NotBlank
     @Column(name = "col_senha", nullable = false)
     private String senha;
 
